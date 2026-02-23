@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Orange App Welcome</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background: linear-gradient(180deg, #7b2ff7, #4a00e0);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* Mobile Container */
+.container{
+    width:100%;
+    max-width:430px;
+    height:100vh;
+    max-height:900px;
+    background:white;
+    display:flex;
+    flex-direction:column;
+    text-align:center;
+    overflow:hidden;
+    position:relative;
+}
+
+/* Desktop preview style */
+@media (min-width:768px){
+    .container{
+        border-radius:25px;
+        box-shadow:0 20px 40px rgba(0,0,0,0.3);
+        height:800px;
+    }
+}
+
+.header{
+    padding-top:50px;
+    font-size:22px;
+    font-weight:bold;
+    color:#7b2ff7;
+}
+
+.welcome{
+    margin-top:25px;
+    font-size:28px;
+    font-weight:bold;
+    color:#6a11cb;
+}
+
+.image-container{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.image-container img{
+    width:60%;
+    max-width:250px;
+    animation:bounce 2.5s infinite;
+}
+
+@keyframes bounce{
+    0%{transform:translateY(0);}
+    50%{transform:translateY(-15px);}
+    100%{transform:translateY(0);}
+}
+
+.dots{
+    margin-bottom:15px;
+}
+
+.dot{
+    height:10px;
+    width:10px;
+    margin:0 5px;
+    background:#ddd;
+    border-radius:50%;
+    display:inline-block;
+    transition:.3s;
+}
+
+.active{
+    background:#7b2ff7;
+}
+
+.skip{
+    margin-bottom:15px;
+    color:#7b2ff7;
+    cursor:pointer;
+    font-size:14px;
+}
+
+.footer{
+    padding:20px;
+    background:#6a11cb;
+    padding-bottom:calc(20px + env(safe-area-inset-bottom));
+}
+
+.footer button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:30px;
+    font-size:16px;
+    font-weight:bold;
+    color:white;
+    background:linear-gradient(90deg,#ff8c00,#ff3c00);
+    cursor:pointer;
+}
+
+.footer button:active{
+    transform:scale(.97);
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="header">lemondrop</div>
+    <div class="welcome">Welcome!</div>
+
+    <div class="image-container">
+        <a href="https://web.facebook.com/?_rdc=1&_rdr#"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Orange-Fruit-Pieces.jpg" alt="Orange"><a/>
+    </div>
+
+    <div class="dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+
+    <div class="skip" onclick="skipPage()">Skip</div>
+
+    <div class="footer">
+        <button onclick="startApp()">Get Started</button>
+    </div>
+</div>
+
+<script>
+function startApp(){
+    alert("Welcome to the App 🚀");
+}
+
+function skipPage(){
+    alert("Skipped Welcome Page");
+}
+
+let dots=document.querySelectorAll(".dot");
+let current=0;
+
+setInterval(()=>{
+    dots.forEach(dot=>dot.classList.remove("active"));
+    current=(current+1)%dots.length;
+    dots[current].classList.add("active");
+},2000);
+</script>
+
+</body>
+</html>
